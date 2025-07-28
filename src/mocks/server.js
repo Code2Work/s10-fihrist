@@ -18,8 +18,11 @@ const handlers = [
 
   http.delete(`${baseApiUrl}/:id`, ({ params }) => {
     const { id } = params;
-    const filteredContacts = contacts.filter((item) => item.id != id);
-    return HttpResponse.json(filteredContacts);
+    const index = contacts.findIndex((item) => item.id == id);
+    if (index > -1) {
+      contacts.splice(index, 1); // Global diziden sil
+    }
+    return HttpResponse.json({ success: true });
   }),
 
   http.post(baseApiUrl, async ({ request }) => {

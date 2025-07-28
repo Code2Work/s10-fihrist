@@ -17,8 +17,8 @@ import { BrowserRouter } from "react-router-dom";
 import fs from "fs";
 import path from "path";
 
-const mainFile = fs
-  .readFileSync(path.resolve(__dirname, "../main.jsx"), "utf8")
+const appFile = fs
+  .readFileSync(path.resolve(__dirname, "../App.jsx"), "utf8")
   .replaceAll(/(?:\r\n|\r|\n| )/g, "");
 
 const sideBarFile = fs
@@ -43,8 +43,8 @@ beforeEach(() => {
   );
 });
 
-test("main.jsx'e QueryClientProvider eklenmiş mi?", () => {
-  expect(mainFile).toContain("<QueryClientProvider");
+test("App.jsx'e QueryClientProvider eklenmiş mi?", () => {
+  expect(appFile).toContain("<QueryClientProvider");
 });
 
 test("SideBar componentindeki useEffect kaldırılmış mı?", () => {
@@ -57,6 +57,7 @@ test("Contact componentindeki useEffect kaldırılmış mı?", () => {
 
 test("Yeni kullanıcı kayıt edildikten sonra invalidateQueries kullanılarak yeni datanın gelmesi sağlanıyor mu?", async () => {
   const user = userEvent.setup();
+  await user.click(await screen.findByText("New"));
   await user.type(await screen.findByPlaceholderText("First"), "Test");
   await user.type(await screen.findByPlaceholderText("Last"), "User");
   await user.type(
@@ -68,7 +69,8 @@ test("Yeni kullanıcı kayıt edildikten sonra invalidateQueries kullanılarak y
     "https://fastly.picsum.photos/id/788/300/300.jpg?hmac=vZbkqAx5e6Wjik2rP-gC-xLBHoE6tjXGGKebHc_0CAI"
   );
   await user.click(await screen.findByText("Save"));
-  await screen.findByText("Test User");
+  await screen.findByText("Test");
+  await screen.findByText("User");
 });
 
 test("Kullanıcıyı silindikten sonra invalidateQueries kullanılarak silinen kullanıcı adının listeden kalkması sağlanıyor mu?", async () => {

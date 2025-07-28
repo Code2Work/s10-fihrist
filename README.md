@@ -11,7 +11,7 @@ Bu problemi sana atadılar.
 Sen de bu sorunu `@tanstack/react-query` kullanarak çözmeye karar verdin.
 
 - `@tanstack/react-query` ve `@tanstack/react-query-devtools` kur.
-- `QueryClientProvider` componentını `main.jsx`e ekle ve [dokümantasyondaki](https://tanstack.com/query/latest/docs/framework/react/overview) gibi kullanıma hazır hale getir.
+- `QueryClientProvider` componentını `App.jsx`e ekle ve [dokümantasyondaki](https://tanstack.com/query/latest/docs/framework/react/overview) gibi kullanıma hazır hale getir.
 - `SideBar`da tüm kişileri listelemek için kullanılan kodu `useQuery` kullanarak düzenle.
 - `Contact` componentinde kişi bilgisini almak için kullanılan kodu `useQuery` kullanarak düzenle.
 - `Contact` componentinde kişiyi silmek için yazılan kodu `useMutation` kullanarak düzenle.
